@@ -1,26 +1,131 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Crimson+Pro:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap');
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --parchment: #f5f2ea;
+  --parchment-dark: #e9e4d8;
+  --sandstone: #d4c5a9;
+  --bronze: #a67c52;
+  --bronze-dark: #8b6844;
+  --antique-gold: #c9a961;
+  --slate: #4a3f35;
+  --slate-dark: #2d2520;
+  --ivory: #fdfbf7;
+  --shadow-soft: rgba(74, 63, 53, 0.08);
+  --shadow-medium: rgba(74, 63, 53, 0.15);
+  --dawn-light: linear-gradient(135deg, #f5f2ea 0%, #e9e4d8 100%);
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-parchment: var(--parchment);
+  --color-parchment-dark: var(--parchment-dark);
+  --color-sandstone: var(--sandstone);
+  --color-bronze: var(--bronze);
+  --color-bronze-dark: var(--bronze-dark);
+  --color-antique-gold: var(--antique-gold);
+  --color-slate: var(--slate);
+  --color-slate-dark: var(--slate-dark);
+  --color-ivory: var(--ivory);
+  --font-heading: 'Cormorant Garamond', serif;
+  --font-body: 'Crimson Pro', serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in-slow {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
   }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: linear-gradient(135deg, #f5f2ea 0%, #e9e4d8 100%);
+  color: var(--slate);
+  font-family: 'Crimson Pro', serif;
+  line-height: 1.9;
+  letter-spacing: 0.01em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Subtle texture overlay */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(74, 63, 53, 0.01) 2px,
+      rgba(74, 63, 53, 0.01) 4px
+    );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* Greek border pattern */
+.greek-border {
+  position: relative;
+}
+
+.greek-border::before,
+.greek-border::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    var(--antique-gold) 20%,
+    var(--antique-gold) 80%,
+    transparent
+  );
+}
+
+.greek-border::before {
+  top: 0;
+}
+
+.greek-border::after {
+  bottom: 0;
 }
